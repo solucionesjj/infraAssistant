@@ -1,6 +1,18 @@
 import shutil
 import psutil
 import math
+import platform
+
+def get_os_info():
+    system = platform.system()
+    release = platform.release()
+    version = platform.version()
+    machine = platform.machine()
+    processor = platform.processor()
+    uname = platform.uname()
+
+    return f"Operating System: {system}, Release: {release}, Version: {version}, Machine: {machine}, Processor: {processor}, Uname info: {uname}"
+
 
 def get_space(directory):
     total, used, free, percent = psutil.disk_usage(directory)
@@ -16,3 +28,8 @@ def get_all_storage_devices_space():
             print(f"Device: {device}, {partition.mountpoint}, Total Space: {total} GigaBytes,Used Space: {used}, Free Space: {free} GigaBytes. ({percent}%)")
 
 get_all_storage_devices_space()
+
+
+
+
+print(get_os_info())
