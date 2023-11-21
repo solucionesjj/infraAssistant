@@ -2,6 +2,7 @@ import shutil
 import psutil
 import math
 import platform
+import json
 
 def get_os_info():
     system = platform.system()
@@ -27,9 +28,11 @@ def get_all_storage_devices_space():
             total, used, free, percent = get_space(partition.mountpoint)
             print(f"Device: {device}, {partition.mountpoint}, Total Space: {total} GigaBytes,Used Space: {used}, Free Space: {free} GigaBytes. ({percent}%)")
 
-get_all_storage_devices_space()
+# get_all_storage_devices_space()
 
 
 
 
-print(get_os_info())
+# print(get_os_info())
+
+print(json.dumps(psutil.net_if_addrs(), indent=1))
