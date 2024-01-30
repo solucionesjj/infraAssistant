@@ -1,10 +1,53 @@
 from fastapi import FastAPI, status
+from typing import List
+from pydantic import BaseModel
+from datetime import datetime
+
+class AuditAuthenticationModel(BaseModel):
+    Date: datetime
+    Cloud: str
+    SystemType: str
+    User: str
+    UserType: str
+    DatabaseName: str
+    UserCreationDate: datetime
+    Role: str
+    Privilege: str
+    PrivilegeStatus: str
+    ObjectType: str
+    ObjectName: str
+    ColumnName: str
+    Login: str
+    LoginName: str
+    LoginCreationDate: datetime
+    LoginAccessDeny: bool
+    LoginHasAccess: bool
+    LoginType: str
+    LoginWindowsGroup: str
+    LoginHasWindowsAccess: bool
+    LoginIsSysadmin: bool
+    LoginIsSecurityAdmin: bool
+    LoginIsServerAdmin: bool
+    LoginIsConfigAdmin: bool
+    LoginIsProcessAdmin: bool
+    LoginIsDiskAdmin: bool
+    LoginIsDbCreator: bool
+    LoginIsBulkAdmin: bool
+    LoginLastConnection: datetime
+    LoginSessions: int
+
+class AuditAuthenticationListModel(BaseModel):
+    data: List[AuditAuthenticationModel]
 
 app = FastAPI()
 
 @app.get("/")
 def index():
     return "InfraAssistant API Working."
+
+@app.post("/auditAuthentication")
+def createAuditAuthenticationRecord(Data: AuditAuthenticationListModel):
+    return Data
 
 # import os
 # from fastapi import FastAPI, status

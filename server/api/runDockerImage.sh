@@ -1,3 +1,3 @@
-# docker run -d -p 80:800 infra-assistant-api
-docker run -it -p 80:800 infra-assistant-api
+docker run --name infra-assistant-api -d -p 8080:80 infra-assistant-api
+# docker run -it -p 800:80 infra-assistant-api
 docker ps
